@@ -21,9 +21,10 @@ class Ref extends React.Component {
     // 15 / 16 -> TypeError: Cannot set property 'ref' of undefined
     // this.el.ref = undefined
 
-    // 15 setting undefined is ok
+    // 15 -> setting undefined is ok
+    // 16 -> setting undefined yields Uncaught Error: Expected ref to be a function or a string.
     this.mockEl = {
-        ref: undefined,
+        ref: null,
         type: 'h1',
         key: null,
         props: {
@@ -39,13 +40,13 @@ class Ref extends React.Component {
 
     const [ markdownEl ] =  reactOutput(parse("[link](https://reactjs.org/)"))
     this.markdownEl = markdownEl
-    this.markdownEl.ref = undefined
+    this.markdownEl.ref = null
   }
 
   render() {
     return (
       <div>
-        <h3> Ref Component: {React.version} </h3>
+        <h3 ref={undefined}> Ref Component: {React.version} </h3>
         {this.createEl}
         <br />
         {this.mockEl}
