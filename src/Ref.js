@@ -14,14 +14,22 @@ var parse = function(source) {
 class Ref extends React.Component {
 
   componentWillMount() {
+    this.el = React.createElement("div", {ref: undefined},
+      React.createElement("p", {dangerouslySetInnerHTML: {__html: 'TEXT'}})
+    )
+
+    // this.el.ref = undefined
+
     this.r =  reactOutput(parse("[link](https://reactjs.org/)"))
-    // this.r[0].ref = undefined
+    this.r[0].ref = undefined
   }
 
   render() {
     return (
       <div>
-        <h1> Ref Component </h1>
+        <h3> Ref Component: {React.version} </h3>
+        {this.el}
+        <br />
         {this.r}
       </div>
     )
